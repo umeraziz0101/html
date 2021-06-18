@@ -7,9 +7,6 @@ on:
   # Triggers the workflow on push or pull request events but only for the master branch
   push:
     branches: [ master ]
-  pull_request:
-    branches: [ master ]
-
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
 
@@ -27,14 +24,13 @@ jobs:
 
       # Installing Node
       - name: Installing Node
-        uses: actions/setup-node@v2
+        uses: actions/setup-node@v1
         with:
-            node-verion: 14
+          node-version: 14
 
       # Installing Surge
       - name: Installing surge
         run: npm install --global surge
       - name: deploying using surge
         run: surge ./ html-by-umeraziz.surge.sh --token $ {{ secrets.SURGE_TOKEN }}
-          echo Add other actions to build,
-          echo test, and deploy your project.
+
